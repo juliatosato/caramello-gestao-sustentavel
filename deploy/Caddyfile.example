@@ -1,0 +1,16 @@
+SEU_DOMINIO_AQUI {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:5000
+
+    header {
+        -Server
+        X-Content-Type-Options nosniff
+        Referrer-Policy strict-origin-when-cross-origin
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    }
+
+    log {
+        output file /var/log/caddy/caramello-access.log
+        format json
+    }
+}

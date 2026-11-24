@@ -1,0 +1,27 @@
+[Unit]
+Description=Caramello Gestao Sustentavel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+User=caramello
+Group=caramello
+WorkingDirectory=/opt/caramello/current
+ExecStart=/usr/bin/dotnet /opt/caramello/current/Caramello.Api.dll
+EnvironmentFile=/etc/caramello/caramello.env
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://127.0.0.1:5000
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+KillSignal=SIGINT
+SyslogIdentifier=caramello
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/caramello /var/backups/caramello
+
+[Install]
+WantedBy=multi-user.target

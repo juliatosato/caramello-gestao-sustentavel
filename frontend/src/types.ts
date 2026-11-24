@@ -1,0 +1,13 @@
+export type TotalUnidade = { unidade: string; quantidade: number };
+export type Agrupamento = { rotulo: string; unidade: string; quantidade: number };
+export type Serie = { data: string; unidade: string; quantidade: number };
+export type EstoqueBaixo = { id: number; nome: string; categoria: string; unidade: string; saldo: number; minimo: number };
+export type Dashboard = { inicio: string; fim: string; descartes: TotalUnidade[]; consumo: TotalUnidade[]; descartesPorCategoria: Agrupamento[]; descartesPorMotivo: Agrupamento[]; estoqueBaixo: EstoqueBaixo[]; evolucaoDescartes: Serie[] };
+export type Insumo = { id: number; nome: string; categoria: string; unidade: string; quantidade: number; estoqueMinimo: number; prazoReposicaoDias: number; estoqueSeguranca: number };
+export type Movimentacao = { id: number; insumoId: number; insumo: string; unidade: string; tipo: 'Entrada' | 'Consumo' | 'Descarte'; quantidade: number; motivo: string; data: string };
+export type Desperdicio = { insumoId: number; insumo: string; categoria: string; unidade: string; quantidadeDescartada: number; saidasTotais: number; proporcaoDescarte: number | null };
+export type Analise = { inicio: string; fim: string; insumos: Desperdicio[]; evolucao: Serie[] };
+export type Sugestao = { insumoId: number; insumo: string; unidade: string; saldoAtual: number; prazoReposicaoDias: number; estoqueSeguranca: number; diasComHistorico: number; consumoMedioDiario: number | null; quantidadeSugerida: number | null; historicoSuficiente: boolean; mensagem: string; metodologia: string };
+export type RegistroBorra = { id: number; tipo: 'Gerada' | 'Destinada'; quantidade: number; unidade: string; destinacao: string; observacao: string; data: string };
+export type Comparacao = { periodoAtual: Dashboard; periodoAnterior: Dashboard };
+export type DescarteAmbiental = { id: number; material: string; unidade: string; quantidade: number; motivo: string; data: string };

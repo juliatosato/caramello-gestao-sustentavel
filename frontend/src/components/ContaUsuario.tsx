@@ -1,0 +1,11 @@
+import { FormEvent, useState } from 'react';
+import { DatabaseBackup, KeyRound, LogOut, X } from 'lucide-react';
+import { api, renovarCsrf } from '../api';
+
+export default function ContaUsuario({ email, onLogout }: { email: string; onLogout: () => void }) {
+  const [aberto, setAberto] = useState(false); const [atual, setAtual] = useState(''); const [nova, setNova] = useState(''); const [mensagem, setMensagem] = useState('');
+  async function trocar(e: FormEvent) { e.preventDefault(); setMensagem(''); try { await api('/auth/trocar-senha', { method: 'POST', body: JSON.stringify({ senhaAtual: atual, novaSenha: nova }) }); setMensagem('Senha alterada com sucesso.'); setAtual(''); setNova(''); } catch (error) { setMensagem(error instanceof Error ? error.message : 'Não foi possível alterar a senha.'); } }
+  async function sair() { await api('/auth/logout', { method: 'POST' }); renovarCsrf(); onLogout(); }
+  async function backup() { setMensagem('Criando backup…'); try { await api('/backups', { method: 'POST' }); setMensagem('Backup criado e validado.'); } catch (error) { setMensagem(error instanceof Error ? error.message : 'Não foi possível criar o backup.'); } }
+  return <div className="accountArea"><span>{email}</span><button className="outline" onClick={() => void backup()}><DatabaseBackup size={16} /> Backup</button><button className="outline" onClick={() => setAberto(!aberto)}><KeyRound size={16} /> Senha</button><button className="outline" onClick={() => void sair()}><LogOut size={16} /> Sair</button>{mensagem && !aberto && <span className="accountMessage">{mensagem}</span>}{aberto && <section className="accountPanel"><button className="iconButton accountClose" aria-label="Fechar" onClick={() => setAberto(false)}><X size={16} /></button><h2>Trocar senha</h2>{mensagem && <div className="notice loading">{mensagem}</div>}<form className="accountForm" onSubmit={e => void trocar(e)}><label>Senha atual<input type="password" autoComplete="current-password" required value={atual} onChange={e => setAtual(e.target.value)} /></label><label>Nova senha<input type="password" autoComplete="new-password" minLength={12} required value={nova} onChange={e => setNova(e.target.value)} /></label><button className="primary">Alterar senha</button></form></section>}</div>;
+}
