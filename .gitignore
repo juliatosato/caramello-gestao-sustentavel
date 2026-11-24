@@ -8,6 +8,8 @@ artifacts/
 TestResults/
 coverage/
 *.tsbuildinfo
+__pycache__/
+*.pyc
 *.exe
 *.msi
 *.msix

@@ -45,6 +45,23 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\deploy\publish-windows
 
 The script publishes self-contained x64 desktop and API binaries and builds `artifacts\installer\CaramelloSetup.exe`. See the [Windows guide](DESKTOP.md) for WebView2 requirements, startup logs and update validation.
 
-## Screenshots
+## Application Preview
 
-The [screenshot gallery](docs/SCREENSHOTS.md) documents the demo screens. Demo records and values are fictional and do not represent the café’s operations or measured outcomes.
+All operational records and values shown below are fictional and used exclusively for demonstration. They do not represent actual café operations or measured impact.
+
+![Sustainability dashboard with consumption, waste and stock alerts](docs/screenshots/02-dashboard.png)
+
+*Sustainability dashboard. Review consumption and waste by unit, see why items were discarded, and identify low stock.*
+
+| Feature | Preview |
+| --- | --- |
+| Administrator sign-in | [Login](docs/screenshots/01-login.png) |
+| Stock levels, minimums and lead times | [Inventory](docs/screenshots/03-inventory.png) |
+| Consumption-based purchase quantities | [Restocking suggestions](docs/screenshots/04-restocking.png) |
+| Discard totals and ratios by item | [Waste analysis](docs/screenshots/05-waste-analysis.png) |
+| Grounds generated and sent for treatment | [Coffee grounds](docs/screenshots/06-coffee-grounds.png) |
+| Practical composting instructions | [Composting guide](docs/screenshots/07-composting-guide.png) |
+| Municipal guidance and consultation locations | [Composting locations](docs/screenshots/08-composting-locations.png) |
+| Equal-period comparisons and CSV exports | [Reports](docs/screenshots/09-reports.png) |
+
+See the [screenshot gallery](docs/SCREENSHOTS.md) for full-size views and instructions to recreate the demo locally.
